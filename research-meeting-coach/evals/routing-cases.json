@@ -1,0 +1,42 @@
+[
+  {
+    "request": "Summarize my weekly notes into a standard lab report.",
+    "expected": "route-elsewhere",
+    "reason": "Generic weekly reporting has no advisor-decision, critique, rehearsal, or coaching need."
+  },
+  {
+    "request": "Turn this paper into a conference slide deck.",
+    "expected": "route-elsewhere",
+    "reason": "Paper-only presentation generation is outside scope."
+  },
+  {
+    "request": "Make my existing PI update slides prettier and export PPTX.",
+    "expected": "route-elsewhere",
+    "reason": "Visual design and rendering are outside scope."
+  },
+  {
+    "request": "Build a persistent tracker for all experiments and lab tasks.",
+    "expected": "route-elsewhere",
+    "reason": "Project-state and lab-management infrastructure are outside scope."
+  },
+  {
+    "request": "Critique my meeting opener and identify what my advisor cannot yet believe or decide.",
+    "expected": "use-skill",
+    "reason": "Advisor-facing reasoning-gap critique is a primary task."
+  },
+  {
+    "request": "From these three meeting transcripts, learn which evidence my advisor repeatedly asks for.",
+    "expected": "use-skill",
+    "reason": "Behavior-evidenced advisor profiling is a primary task."
+  },
+  {
+    "request": "Help me rehearse the hardest questions about this unfinished result and explain why my claim is too strong.",
+    "expected": "use-skill",
+    "reason": "Attack-surface rehearsal and novice coaching are primary tasks."
+  },
+  {
+    "request": "Update last week's actions from the recorded decisions in today's advisor meeting notes.",
+    "expected": "use-skill",
+    "reason": "Advisor-meeting continuity and attributed post-meeting updates are in scope."
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "id": "E08",
+  "title": "Single observational comparison framed causally",
+  "category": "evidence",
+  "request": "Write a strong opener saying the augmentation caused the gain.",
+  "source_material": [
+    "One run with augmentation scored 84.2.",
+    "One earlier run without augmentation scored 81.9.",
+    "The seed and data order differed."
+  ],
+  "must_include": [
+    "Weaken the causal language.",
+    "Name seed and data order as confounds.",
+    "Propose or request a controlled comparison only as a proposal."
+  ],
+  "must_not_include": [
+    "Say augmentation caused the gain.",
+    "Call the difference significant.",
+    "Invent repetitions."
+  ],
+  "expected_route": "use-skill"
+}

@@ -1,0 +1,19 @@
+{
+  "id": "E11",
+  "title": "Pure progress update remains evidence-led",
+  "category": "progress",
+  "request": "Help me prepare a concise advisor update; I do not need a decision this week.",
+  "source_material": [
+    "Completed the labeled-data audit and found no duplicate IDs.",
+    "The planned ablation has not started because the compute allocation begins tomorrow."
+  ],
+  "must_include": [
+    "Distinguish completed evidence from planned work.",
+    "Use a feedback request appropriate to a progress meeting without inventing a decision."
+  ],
+  "must_not_include": [
+    "Invented experimental results.",
+    "A forced go/no-go choice."
+  ],
+  "expected_route": "use-skill"
+}

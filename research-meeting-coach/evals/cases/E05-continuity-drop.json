@@ -1,0 +1,23 @@
+{
+  "id": "E05",
+  "title": "Prior advisor request absent from the current update",
+  "category": "continuity",
+  "request": "Turn this week's work into an advisor meeting outline.",
+  "source_material": [
+    "This week I refactored the data loader and reran the baseline."
+  ],
+  "previous_actions": [
+    "Advisor requested an attention visualization.",
+    "Advisor requested an early-frame control."
+  ],
+  "must_include": [
+    "Account for both previous actions.",
+    "Mark unsupported completion states unknown.",
+    "Surface the missing actions before drafting the main path."
+  ],
+  "must_not_include": [
+    "Silently omit either action.",
+    "Infer completion from the baseline rerun."
+  ],
+  "expected_route": "use-skill"
+}

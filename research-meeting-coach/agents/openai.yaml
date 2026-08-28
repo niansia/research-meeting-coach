@@ -1,0 +1,7 @@
+interface:
+  display_name: "Advisor-Aware Research Meeting Coach"
+  short_description: "Turn research updates into advisor decisions"
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/icon.svg"
+  brand_color: "#2563EB"
+  default_prompt: "Use $research-meeting-coach on these research notes to expose unsupported claims, preserve prior actions, and prepare one decision my advisor can answer."

@@ -1,0 +1,15 @@
+{
+  "case_id": "E15-synthetic",
+  "synthetic": true,
+  "taxonomy_version": "1.0",
+  "annotation_source": "Author-created smoke fixture; not an advisor outcome.",
+  "predictions": [
+    {"theme_id": "uncontrolled-frame-count", "rank": 1, "risk": "Critical"},
+    {"theme_id": "missing-comparable-baseline", "rank": 2, "risk": "High"},
+    {"theme_id": "unverified-literature-note", "rank": 3, "risk": "Medium"}
+  ],
+  "actual_questions": [
+    {"text": "Did you hold frame count constant?", "theme_ids": ["uncontrolled-frame-count"]},
+    {"text": "Which directly comparable baseline are you using?", "theme_ids": ["missing-comparable-baseline"]}
+  ]
+}

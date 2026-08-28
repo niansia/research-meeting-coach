@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:research-meeting-coach:schema:human-evaluation-results:1.1",
+  "title": "Baseline Comparison Ratings With Per-Rating Blinding Metadata",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["study_id", "baseline_label", "candidate_label", "comparisons"],
+  "properties": {
+    "study_id": {"type": "string", "minLength": 1},
+    "baseline_label": {"type": "string", "minLength": 1},
+    "candidate_label": {"type": "string", "minLength": 1},
+    "sampling_notes": {"type": "string"},
+    "comparisons": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "case_id",
+          "reviewer_id",
+          "blind",
+          "preference",
+          "baseline_factual_errors",
+          "candidate_factual_errors",
+          "baseline_corrections",
+          "candidate_corrections",
+          "baseline_scores",
+          "candidate_scores"
+        ],
+        "properties": {
+          "case_id": {"type": "string", "minLength": 1},
+          "reviewer_id": {"type": "string", "minLength": 1},
+          "blind": {"type": "boolean"},
+          "preference": {"enum": ["baseline", "candidate", "tie"]},
+          "baseline_factual_errors": {"type": "number", "minimum": 0},
+          "candidate_factual_errors": {"type": "number", "minimum": 0},
+          "baseline_corrections": {"type": "number", "minimum": 0},
+          "candidate_corrections": {"type": "number", "minimum": 0},
+          "baseline_scores": {"$ref": "#/$defs/scores"},
+          "candidate_scores": {"$ref": "#/$defs/scores"}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "scores": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {"type": "number", "minimum": 0, "maximum": 4}
+    }
+  }
+}

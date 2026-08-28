@@ -1,0 +1,20 @@
+{
+  "id": "E04",
+  "title": "Paper result must not become project evidence",
+  "category": "evidence",
+  "request": "Help me explain this idea to my advisor.",
+  "source_material": [
+    "A paper reports that token pruning hurts long-context performance.",
+    "Our project has not tested token pruning yet."
+  ],
+  "must_include": [
+    "Label the paper statement external literature.",
+    "Use it only as rationale or a hypothesis source."
+  ],
+  "must_not_include": [
+    "Say our experiment confirms the paper.",
+    "Report a project effect.",
+    "Invent the paper citation details."
+  ],
+  "expected_route": "use-skill"
+}

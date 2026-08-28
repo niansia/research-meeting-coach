@@ -1,0 +1,8 @@
+# Local provenance register for the de-identified public-question seed corpus.
+# It contains source URLs and must not be bundled into a public release.
+research-meeting-coach/evals/public-question-seed/*.local.json
+
+# Generated interpreter and release artifacts.
+__pycache__/
+*.py[cod]
+dist/

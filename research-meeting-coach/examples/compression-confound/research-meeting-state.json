@@ -1,0 +1,172 @@
+{
+  "schema_version": "1.1",
+  "meeting": {
+    "date": "2026-09-01",
+    "intent": "troubleshooting",
+    "time_budget_min": 15,
+    "audience": ["advisor"],
+    "mission": "Choose the next control that best separates compression from frame-count or token-budget effects."
+  },
+  "continuity": {
+    "previous_actions": [
+      {
+        "id": "A12",
+        "item": "Run the early-frame control.",
+        "status": "partial",
+        "reason": "The supplied notes say it is only half complete.",
+        "source": {
+          "locator": "raw-notes.md:12",
+          "verification": "text_exact",
+          "quote": "Last week the advisor asked me to run the early-frame control. It is only half complete."
+        }
+      }
+    ]
+  },
+  "facts": [
+    {
+      "id": "F01",
+      "evidence_class": "project_fact",
+      "fact_type": "measurement",
+      "statement": "Baseline accuracy was 72.3.",
+      "source": {"locator": "raw-notes.md:7", "verification": "text_exact", "quote": "Baseline accuracy was 72.3."},
+      "measurements": [
+        {"metric": "accuracy", "value": "72.3", "unit": "unitless", "condition": "baseline", "qualifier": "exact"}
+      ]
+    },
+    {
+      "id": "F02",
+      "evidence_class": "project_fact",
+      "fact_type": "measurement",
+      "statement": "Compression setup accuracy was 65.1.",
+      "source": {"locator": "raw-notes.md:8", "verification": "text_exact", "quote": "Compression setup accuracy was 65.1."},
+      "measurements": [
+        {"metric": "accuracy", "value": "65.1", "unit": "unitless", "condition": "compression setup", "qualifier": "exact"}
+      ]
+    },
+    {
+      "id": "F03",
+      "evidence_class": "project_fact",
+      "fact_type": "measurement",
+      "statement": "The 32-frame run accuracy returned to around 70",
+      "source": {"locator": "raw-notes.md:9", "verification": "text_exact", "quote": "The 32-frame run accuracy returned to around 70"},
+      "measurements": [
+        {"metric": "frame_count", "value": "32", "unit": "frame", "condition": "32-frame run", "qualifier": "exact"},
+        {"metric": "accuracy", "value": "70", "unit": "unitless", "condition": "32-frame run", "qualifier": "approximate"}
+      ],
+      "retention": "required"
+    },
+    {
+      "id": "F04",
+      "evidence_class": "project_fact",
+      "fact_type": "record",
+      "statement": "It is only half complete.",
+      "source": {"locator": "raw-notes.md:12", "verification": "text_exact", "quote": "Last week the advisor asked me to run the early-frame control. It is only half complete."},
+      "retention": "required"
+    },
+    {
+      "id": "F05",
+      "evidence_class": "external_literature",
+      "fact_type": "record",
+      "statement": "An unverified paper note says token pruning may hurt long-context performance.",
+      "source": {"locator": "raw-notes.md:10", "verification": "text_exact", "quote": "One says token pruning may hurt long-context performance, but I did not record verified citation details here."}
+    },
+    {
+      "id": "F06",
+      "evidence_class": "project_fact",
+      "fact_type": "blocker",
+      "statement": "CUDA was unavailable for one day, which delayed the schedule.",
+      "source": {"locator": "raw-notes.md:11", "verification": "text_exact", "quote": "CUDA was unavailable for one day, which delayed the schedule."}
+    },
+    {
+      "id": "F07",
+      "evidence_class": "project_fact",
+      "fact_type": "record",
+      "statement": "The attention visualization has not been started.",
+      "source": {"locator": "raw-notes.md:13", "verification": "text_exact", "quote": "The attention visualization has not been started."}
+    }
+  ],
+  "derived_numbers": [
+    {
+      "token": "3",
+      "kind": "presentation_structure",
+      "expression": "Allocate three minutes from the supplied meeting time budget to the opening comparison.",
+      "unit": "min",
+      "source_fields": ["meeting.time_budget_min"]
+    },
+    {
+      "token": "5",
+      "kind": "presentation_structure",
+      "expression": "Allocate five minutes from the supplied meeting time budget to the confound analysis.",
+      "unit": "min",
+      "source_fields": ["meeting.time_budget_min"]
+    },
+    {
+      "token": "4",
+      "kind": "presentation_structure",
+      "expression": "Allocate four minutes from the supplied meeting time budget to the control decision.",
+      "unit": "min",
+      "source_fields": ["meeting.time_budget_min"]
+    }
+  ],
+  "reasoning_items": [
+    {
+      "id": "R01",
+      "layer": "observation",
+      "text": "The supplied configurations have different observed accuracies.",
+      "evidence_ids": ["F01", "F02", "F03"]
+    },
+    {
+      "id": "R02",
+      "layer": "interpretation",
+      "text": "Compression may be associated with lower accuracy, but frame count remains a live confound.",
+      "evidence_ids": ["F01", "F02", "F03"],
+      "uncertainty": "Frame count and token budget are not controlled.",
+      "decision_needed": "Choose the most discriminating control to run first."
+    },
+    {
+      "id": "R03",
+      "layer": "hypothesis",
+      "text": "Compression, frame count, or token budget could explain the observed difference.",
+      "evidence_ids": ["F01", "F02", "F03"]
+    },
+    {
+      "id": "R04",
+      "layer": "proposal",
+      "text": "Compare an equal-frame control with an equal-token-budget control.",
+      "evidence_ids": ["F01", "F02", "F03"]
+    }
+  ],
+  "asks": [
+    {
+      "id": "Q01",
+      "question": "Which proposed control should be prioritized: equal-frame or equal-token-budget?",
+      "evidence_ids": ["F01", "F02", "F03", "F04"],
+      "options": [
+        {"label": "equal-frame control", "provenance": "proposed", "source_fact_ids": ["F03"]},
+        {"label": "equal-token-budget control", "provenance": "proposed", "source_fact_ids": ["F01", "F02"]}
+      ]
+    }
+  ],
+  "attack_surface": [
+    {
+      "id": "G01",
+      "risk": "Critical",
+      "gap": "The current comparison cannot isolate compression from frame count or token budget.",
+      "evidence_ids": ["F01", "F02", "F03"],
+      "minimum_repair": "Use bounded language and ask the advisor to prioritize a discriminating control."
+    },
+    {
+      "id": "G02",
+      "risk": "Medium",
+      "gap": "The paper note has no verified citation details and is not project evidence.",
+      "evidence_ids": ["F05"],
+      "minimum_repair": "Keep it in backup as an unverified rationale only."
+    }
+  ],
+  "relevance": {
+    "main": ["F01", "F02", "F03", "F04", "A12", "R01", "R02", "Q01", "G01"],
+    "backup": ["F05", "F06", "F07", "R03", "R04", "G02"],
+    "omit": []
+  },
+  "advisor_profile_ref": null
+}

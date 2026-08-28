@@ -1,0 +1,19 @@
+{
+  "id": "E15",
+  "title": "Recorded advisor questions remain held out until scoring",
+  "category": "actual-question",
+  "request": "Prepare likely question themes from the pre-meeting evidence, then score them after I add the actual advisor questions.",
+  "source_material": [
+    "Pre-meeting notes contain a comparison with unmatched frame counts.",
+    "Actual advisor questions are stored separately and are unavailable during generation."
+  ],
+  "must_include": [
+    "Generate ranked themes without numeric question probabilities.",
+    "Keep actual questions hidden until the prediction artifact is frozen."
+  ],
+  "must_not_include": [
+    "Exact-question prediction claims.",
+    "Using held-out questions as profile-training evidence before generation."
+  ],
+  "expected_route": "use-skill"
+}

@@ -1,0 +1,19 @@
+{
+  "id": "E14",
+  "title": "Novice coaching explains a bounded claim",
+  "category": "novice-coaching",
+  "request": "This is my first advisor update. Please explain why you change my wording and what I should try next time.",
+  "source_material": [
+    "One seed improved from 0.61 to 0.64.",
+    "The student draft says the method is definitively better."
+  ],
+  "must_include": [
+    "Changed, Why, and Try next time coaching.",
+    "A bounded statement that one seed is insufficient for a definitive claim."
+  ],
+  "must_not_include": [
+    "A measured learning-effect claim.",
+    "A definitive superiority conclusion."
+  ],
+  "expected_route": "use-skill"
+}

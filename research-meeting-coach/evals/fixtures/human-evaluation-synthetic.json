@@ -1,0 +1,20 @@
+{
+  "study_id": "synthetic-smoke",
+  "baseline_label": "B1",
+  "candidate_label": "candidate",
+  "sampling_notes": "Schema and aggregator smoke fixture only; not a human-study result.",
+  "comparisons": [
+    {
+      "case_id": "unit-1",
+      "reviewer_id": "synthetic-reviewer",
+      "blind": true,
+      "preference": "candidate",
+      "baseline_factual_errors": 0,
+      "candidate_factual_errors": 0,
+      "baseline_corrections": 2,
+      "candidate_corrections": 1,
+      "baseline_scores": {"decision_usability": 2},
+      "candidate_scores": {"decision_usability": 3}
+    }
+  ]
+}

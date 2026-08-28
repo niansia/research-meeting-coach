@@ -1,0 +1,60 @@
+name: Pilot feedback
+description: Share de-identified experience from trying the skill on a research meeting.
+title: "[Pilot] "
+labels: [pilot-feedback]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for testing the early alpha. Do not post raw notes, results, advisor names, institutions, private messages, or exact questions that could identify a person or project. Aggregate or paraphrase only.
+  - type: dropdown
+    id: material
+    attributes:
+      label: Starting material
+      options:
+        - Existing weekly report
+        - Raw notes
+        - Draft meeting outline
+        - Post-meeting follow-up
+        - Synthetic test only
+    validations:
+      required: true
+  - type: dropdown
+    id: stage
+    attributes:
+      label: Research stage
+      options:
+        - Undergraduate research
+        - Masters
+        - Doctoral
+        - Postdoctoral
+        - Advisor or faculty review
+        - Prefer not to say
+    validations:
+      required: true
+  - type: textarea
+    id: useful
+    attributes:
+      label: What changed or became clearer?
+      description: Describe the type of gap or decision, not confidential content.
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: What required correction?
+      description: Mention invented facts, missed evidence, awkward structure, or excess work.
+  - type: textarea
+    id: meeting
+    attributes:
+      label: Optional post-meeting observation
+      description: Paraphrase whether the meeting surfaced a covered or missed theme. This is feedback, not a scored holdout unless a separate consented protocol was followed.
+  - type: checkboxes
+    id: claims
+    attributes:
+      label: Boundaries
+      options:
+        - label: I understand this public issue is not a confidential research channel.
+          required: true
+        - label: I removed identifiable people, institutions, projects, and unpublished results.
+          required: true

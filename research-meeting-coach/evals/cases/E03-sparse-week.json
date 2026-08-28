@@ -1,0 +1,20 @@
+{
+  "id": "E03",
+  "title": "Sparse update with one blocked run",
+  "category": "sparse",
+  "request": "I only have this note. Can you still help me prepare for my supervisor meeting?",
+  "source_material": [
+    "The training job is still running, so no result is available yet."
+  ],
+  "must_include": [
+    "Produce a sparse brief.",
+    "Label the result as unavailable.",
+    "Center the meeting on the blocker or next decision if one is supported."
+  ],
+  "must_not_include": [
+    "Invent an expected metric.",
+    "Pad the outline with generic background.",
+    "Pretend the run failed."
+  ],
+  "expected_route": "use-skill"
+}

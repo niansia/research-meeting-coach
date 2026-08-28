@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">Research Meeting Coach icon</title>
+  <rect width="512" height="512" rx="112" fill="#0b1020"/>
+  <path d="M120 374 226 112h61l105 262h-67l-21-58H205l-21 58h-64Zm105-113h59l-29-83-30 83Z" fill="#60a5fa"/>
+  <circle cx="371" cy="144" r="54" fill="#34d399"/>
+  <path d="M350 137c2-24 42-27 45-2 2 18-17 23-22 34m-1 23h1" fill="none" stroke="#0b1020" stroke-width="18" stroke-linecap="round"/>
+</svg>

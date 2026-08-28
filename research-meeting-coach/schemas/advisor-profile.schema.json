@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:research-meeting-coach:schema:advisor-profile:1.1",
+  "title": "Advisor Preference Profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "advisor_profile", "prohibited_inference"],
+  "properties": {
+    "schema_version": {"const": "1.1"},
+    "advisor_profile": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["value", "basis", "confidence", "evidence"],
+        "properties": {
+          "value": {"type": "string", "minLength": 1},
+          "basis": {"const": "behavioral_evidence"},
+          "confidence": {"enum": ["low", "medium", "high"]},
+          "evidence": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["type", "meeting_ids", "note", "source"],
+              "properties": {
+                "type": {"enum": ["explicit_feedback", "repeated_behavior", "single_observation", "student_impression"]},
+                "meeting_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+                "note": {"type": "string", "minLength": 1},
+                "source": {"$ref": "#/$defs/source"}
+              }
+            }
+          }
+        }
+      }
+    },
+    "prohibited_inference": {
+      "type": "array",
+      "allOf": [
+        {"contains": {"const": "nationality"}},
+        {"contains": {"const": "region"}},
+        {"contains": {"const": "institution"}},
+        {"contains": {"const": "age"}},
+        {"contains": {"const": "gender"}},
+        {"contains": {"const": "discipline"}},
+        {"contains": {"const": "prestige"}}
+      ],
+      "items": {"type": "string"},
+      "uniqueItems": true
+    }
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["locator", "verification"],
+      "properties": {
+        "locator": {"type": "string", "minLength": 1},
+        "verification": {"enum": ["text_exact", "manual"]},
+        "quote": {"type": "string", "minLength": 1},
+        "verification_note": {"type": "string", "minLength": 1}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"verification": {"const": "text_exact"}}, "required": ["verification"]},
+          "then": {"required": ["quote"]}
+        },
+        {
+          "if": {"properties": {"verification": {"const": "manual"}}, "required": ["verification"]},
+          "then": {"required": ["verification_note"]}
+        }
+      ]
+    }
+  }
+}

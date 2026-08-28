@@ -1,0 +1,21 @@
+{
+  "id": "E10",
+  "title": "Post-meeting notes with missing owner and due date",
+  "category": "continuity",
+  "request": "Update the meeting state from these notes.",
+  "source_material": [
+    "Advisor said to run the equal-frame control before the visualization.",
+    "The notes do not record an owner or due date."
+  ],
+  "must_include": [
+    "Record the decision from the meeting note.",
+    "Leave owner and due date unknown.",
+    "Keep a source locator."
+  ],
+  "must_not_include": [
+    "Assign the student as owner by convention.",
+    "Invent a due date.",
+    "Rewrite the pre-meeting state."
+  ],
+  "expected_route": "use-skill"
+}

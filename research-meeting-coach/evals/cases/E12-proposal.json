@@ -1,0 +1,20 @@
+{
+  "id": "E12",
+  "title": "Proposal meeting separates rationale from project evidence",
+  "category": "proposal",
+  "request": "Prepare me to propose a new robustness study to my advisor.",
+  "source_material": [
+    "No robustness runs have been executed.",
+    "A paper note suggests sensitivity to distribution shift, but the citation is not verified.",
+    "The user proposes testing two supplied corruption levels."
+  ],
+  "must_include": [
+    "Label the experiment as a proposal, not a result.",
+    "Keep the unverified paper note separate from project evidence."
+  ],
+  "must_not_include": [
+    "Claimed robustness degradation.",
+    "Additional corruption levels presented as user-supplied."
+  ],
+  "expected_route": "use-skill"
+}

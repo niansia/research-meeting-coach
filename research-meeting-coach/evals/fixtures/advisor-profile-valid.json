@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.1",
+  "advisor_profile": {
+    "opening_preference": {
+      "value": "Lead with the strongest result and its main limitation.",
+      "basis": "behavioral_evidence",
+      "confidence": "high",
+      "evidence": [
+        {
+          "type": "explicit_feedback",
+          "meeting_ids": ["M04"],
+          "note": "Next time, start with the strongest result and its main limitation.",
+          "source": {
+            "locator": "advisor-sources/meeting-M04.md:1",
+            "verification": "text_exact",
+            "quote": "Next time, start with the strongest result and its main limitation."
+          }
+        }
+      ]
+    },
+    "baseline_sensitivity": {
+      "value": "Prepare the strongest baseline in the main path.",
+      "basis": "behavioral_evidence",
+      "confidence": "medium",
+      "evidence": [
+        {
+          "type": "repeated_behavior",
+          "meeting_ids": ["M05", "M06", "M07"],
+          "note": "Across M05, M06, and M07, the advisor questioned baseline fairness.",
+          "source": {
+            "locator": "advisor-sources/advisor-question-log.md:1",
+            "verification": "text_exact",
+            "quote": "Across M05, M06, and M07, the advisor questioned baseline fairness."
+          }
+        }
+      ]
+    }
+  },
+  "prohibited_inference": ["nationality", "region", "institution", "age", "gender", "discipline", "prestige"]
+}

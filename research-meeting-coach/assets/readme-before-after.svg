@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">From weekly notes to an advisor decision</title>
+  <desc id="desc">A before and after comparison showing messy research notes converted into an evidence-bounded advisor meeting.</desc>
+  <rect width="1200" height="630" rx="28" fill="#0b1020"/>
+  <text x="64" y="78" fill="#f8fafc" font-family="Arial, sans-serif" font-size="38" font-weight="700">From weekly notes to an advisor decision</text>
+  <rect x="64" y="118" width="455" height="430" rx="20" fill="#151d32" stroke="#334155" stroke-width="2"/>
+  <text x="96" y="165" fill="#94a3b8" font-family="Arial, sans-serif" font-size="20" font-weight="700">BEFORE</text>
+  <text x="96" y="218" fill="#f8fafc" font-family="Arial, sans-serif" font-size="25" font-weight="700">“Compression hurts accuracy.”</text>
+  <text x="96" y="272" fill="#cbd5e1" font-family="Arial, sans-serif" font-size="21">• baseline: 72.3</text>
+  <text x="96" y="312" fill="#cbd5e1" font-family="Arial, sans-serif" font-size="21">• compression: 65.1</text>
+  <text x="96" y="352" fill="#cbd5e1" font-family="Arial, sans-serif" font-size="21">• 32 frames: around 70</text>
+  <text x="96" y="392" fill="#cbd5e1" font-family="Arial, sans-serif" font-size="21">• control: half complete</text>
+  <text x="96" y="458" fill="#fca5a5" font-family="Arial, sans-serif" font-size="20">Cause overstated. Prior action buried.</text>
+  <path d="M548 332h76m-18-18 18 18-18 18" fill="none" stroke="#60a5fa" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="653" y="118" width="483" height="430" rx="20" fill="#10251f" stroke="#34d399" stroke-width="2"/>
+  <text x="685" y="165" fill="#6ee7b7" font-family="Arial, sans-serif" font-size="20" font-weight="700">ADVISOR-AWARE</text>
+  <text x="685" y="218" fill="#f8fafc" font-family="Arial, sans-serif" font-size="24" font-weight="700">Decision-ready, not story-ready</text>
+  <text x="685" y="272" fill="#d1fae5" font-family="Arial, sans-serif" font-size="20">Conclusion: cause is not isolated</text>
+  <text x="685" y="312" fill="#d1fae5" font-family="Arial, sans-serif" font-size="20">Critical gap: frame count confound</text>
+  <text x="685" y="352" fill="#d1fae5" font-family="Arial, sans-serif" font-size="20">Continuity: requested control is partial</text>
+  <text x="685" y="392" fill="#d1fae5" font-family="Arial, sans-serif" font-size="20">Ask: which discriminating control first?</text>
+  <text x="685" y="458" fill="#93c5fd" font-family="Arial, sans-serif" font-size="20">Evidence-grounded. No invented facts.</text>
+  <text x="64" y="595" fill="#64748b" font-family="Arial, sans-serif" font-size="17">Synthetic example • research-meeting-coach</text>
+</svg>

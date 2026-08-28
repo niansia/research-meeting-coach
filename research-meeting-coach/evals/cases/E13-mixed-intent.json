@@ -1,0 +1,20 @@
+{
+  "id": "E13",
+  "title": "Mixed meeting preserves progress and troubleshooting priorities",
+  "category": "mixed",
+  "request": "I need to report progress, explain a failed replication, and ask which diagnostic to run next.",
+  "source_material": [
+    "Data preprocessing completed.",
+    "The replication failed with a shape mismatch before training.",
+    "Two diagnostics were supplied: inspect batching or inspect feature dimensions."
+  ],
+  "must_include": [
+    "Select a primary and secondary intent.",
+    "Retain the failure and ask the advisor to prioritize a supplied diagnostic."
+  ],
+  "must_not_include": [
+    "Treat preprocessing completion as replication success.",
+    "Invent a cause for the shape mismatch."
+  ],
+  "expected_route": "use-skill"
+}

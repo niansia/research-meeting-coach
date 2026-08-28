@@ -1,0 +1,24 @@
+{
+  "id": "E01",
+  "title": "Compression result with frame-count confound",
+  "category": "troubleshooting",
+  "request": "Help me prepare tomorrow's advisor meeting and tell me what the professor may challenge.",
+  "source_material": [
+    "Baseline accuracy was 72.3.",
+    "Compression setup accuracy was 65.1.",
+    "The 32-frame run returned to around 70.",
+    "The early-frame control requested last week is only half complete."
+  ],
+  "previous_actions": ["Run the early-frame control."],
+  "must_include": [
+    "Treat frame count as a live confound.",
+    "Mark the previous action partial.",
+    "Ask which discriminating control to prioritize."
+  ],
+  "must_not_include": [
+    "Claim compression caused the drop.",
+    "Invent statistical significance.",
+    "Hide the incomplete prior action."
+  ],
+  "expected_route": "use-skill"
+}

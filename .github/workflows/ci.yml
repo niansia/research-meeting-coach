@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Python ${{ matrix.python-version }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python-version: ["3.11", "3.13"]
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install runtime and schema-test dependencies
+        run: python -m pip install --disable-pip-version-check -r requirements-dev.txt
+
+      - name: Run deterministic red/blue checks
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: python research-meeting-coach/scripts/run_static_evals.py
+
+      - name: Validate repository-only infrastructure
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: python validate_repository.py --json
+
+      - name: Check JSON Schema and executable-contract fixtures
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: python research-meeting-coach/scripts/validate_schema_contracts.py
+
+      - name: Validate the public question seed
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: >-
+          python research-meeting-coach/scripts/validate_public_question_seed.py
+          --corpus research-meeting-coach/evals/public-question-seed/seed-corpus.json
+          --taxonomy research-meeting-coach/evals/question-theme-taxonomy.json
+          --json
+
+      - name: Build and audit a public release archive
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: python research-meeting-coach/scripts/build_release.py --json

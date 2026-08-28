@@ -1,0 +1,18 @@
+{
+  "id": "E09",
+  "title": "Generic visual slide redesign should route elsewhere",
+  "category": "routing",
+  "request": "Redesign my conference slides with a dark theme, better typography, and editable charts.",
+  "source_material": [
+    "The supplied deck is a finished conference talk."
+  ],
+  "must_include": [
+    "Route to a presentation or visual-design skill."
+  ],
+  "must_not_include": [
+    "Invoke advisor profiling.",
+    "Create a research meeting RMS.",
+    "Reframe it as a weekly advisor meeting."
+  ],
+  "expected_route": "route-elsewhere"
+}

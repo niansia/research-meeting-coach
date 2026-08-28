@@ -1,0 +1,24 @@
+name: Feature request
+description: Propose an onboarding, workflow, or evidence-integrity improvement.
+title: "[Feature] "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: User problem
+      description: What meeting task is difficult today? Avoid prescribing the implementation first.
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: Synthetic example
+      description: Show a minimal non-sensitive example of the desired behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: boundary
+    attributes:
+      label: Scope and claim boundary
+      description: Could this collide with generic reporting, deck design, project management, or unsupported advisor prediction?

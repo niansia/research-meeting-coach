@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:research-meeting-coach:schema:eval-case:1.0",
+  "title": "Research Meeting Coach Evaluation Case",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "title", "category", "request", "source_material", "must_include", "must_not_include", "expected_route"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^E[0-9]{2}$"},
+    "title": {"type": "string", "minLength": 1},
+    "category": {"enum": ["progress", "troubleshooting", "decision", "proposal", "mixed", "continuity", "evidence", "advisor-profile", "novice-coaching", "actual-question", "sparse", "routing"]},
+    "request": {"type": "string", "minLength": 1},
+    "source_material": {"type": "array", "items": {"type": "string"}},
+    "previous_actions": {"type": "array", "items": {"type": "string"}},
+    "advisor_history": {"type": "array", "items": {"type": "string"}},
+    "must_include": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "must_not_include": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "expected_route": {"enum": ["use-skill", "route-elsewhere"]},
+    "notes": {"type": "string"}
+  }
+}

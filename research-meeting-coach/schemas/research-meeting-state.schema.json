@@ -1,0 +1,218 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:research-meeting-coach:schema:research-meeting-state:1.1",
+  "title": "Research Meeting State",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "meeting", "facts", "reasoning_items", "asks", "attack_surface", "relevance"],
+  "properties": {
+    "schema_version": {"const": "1.1"},
+    "meeting": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["intent", "audience"],
+      "properties": {
+        "date": {"type": "string", "format": "date"},
+        "intent": {"enum": ["progress", "troubleshooting", "decision", "proposal", "mixed"]},
+        "secondary_intent": {"enum": ["progress", "troubleshooting", "decision", "proposal"]},
+        "time_budget_min": {"type": "number", "exclusiveMinimum": 0},
+        "audience": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "mission": {"type": "string", "minLength": 1}
+      }
+    },
+    "continuity": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "previous_actions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "item", "status", "source"],
+            "properties": {
+              "id": {"type": "string", "pattern": "^A[0-9]+$"},
+              "item": {"type": "string", "minLength": 1},
+              "status": {"enum": ["done", "partial", "blocked", "dropped-with-reason", "unknown"]},
+              "reason": {"type": "string"},
+              "source": {"$ref": "#/$defs/source"}
+            }
+          }
+        }
+      }
+    },
+    "facts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "evidence_class", "fact_type", "statement", "source"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^F[0-9]+$"},
+          "evidence_class": {"enum": ["project_fact", "external_literature"]},
+          "fact_type": {"enum": ["measurement", "observation", "artifact", "event", "failure", "blocker", "record"]},
+          "statement": {"type": "string", "minLength": 1},
+          "source": {"$ref": "#/$defs/source"},
+          "measurements": {
+            "type": "array",
+            "minItems": 1,
+            "items": {"$ref": "#/$defs/measurement"}
+          },
+          "retention": {"enum": ["required", "normal"], "default": "normal"}
+        },
+        "allOf": [
+          {
+            "if": {"properties": {"fact_type": {"const": "measurement"}}, "required": ["fact_type"]},
+            "then": {"required": ["measurements"]},
+            "else": {"not": {"required": ["measurements"]}}
+          }
+        ]
+      }
+    },
+    "derived_numbers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["token", "kind", "expression", "unit"],
+        "properties": {
+          "token": {"type": "string", "pattern": "^[+-]?[0-9][0-9,]*(?:\\.[0-9]+)?%?$"},
+          "kind": {"enum": ["calculation", "presentation_structure"]},
+          "expression": {"type": "string", "minLength": 1},
+          "unit": {"type": "string", "minLength": 1},
+          "operation": {"enum": ["add", "subtract"]},
+          "operands": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["fact_id", "measurement_index"],
+              "properties": {
+                "fact_id": {"type": "string", "pattern": "^F[0-9]+$"},
+                "measurement_index": {"type": "integer", "minimum": 0}
+              }
+            }
+          },
+          "source_fields": {"type": "array", "uniqueItems": true, "items": {"enum": ["meeting.time_budget_min"]}}
+        },
+        "allOf": [
+          {
+            "if": {"properties": {"kind": {"const": "calculation"}}},
+            "then": {"required": ["operation", "operands"]}
+          },
+          {
+            "if": {"properties": {"kind": {"const": "presentation_structure"}}},
+            "then": {
+              "required": ["source_fields"],
+              "properties": {"source_fields": {"contains": {"const": "meeting.time_budget_min"}}}
+            }
+          }
+        ]
+      }
+    },
+    "reasoning_items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "layer", "text", "evidence_ids"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^R[0-9]+$"},
+          "layer": {"enum": ["observation", "interpretation", "hypothesis", "proposal"]},
+          "text": {"type": "string", "minLength": 1},
+          "evidence_ids": {"type": "array", "items": {"type": "string", "pattern": "^F[0-9]+$"}},
+          "uncertainty": {"type": "string"},
+          "decision_needed": {"type": "string"}
+        }
+      }
+    },
+    "asks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "question", "evidence_ids"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^Q[0-9]+$"},
+          "question": {"type": "string", "minLength": 1},
+          "evidence_ids": {"type": "array", "items": {"type": "string", "pattern": "^F[0-9]+$"}},
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["label", "provenance"],
+              "properties": {
+                "label": {"type": "string", "minLength": 1},
+                "provenance": {"enum": ["supplied", "proposed"]},
+                "source_fact_ids": {"type": "array", "items": {"type": "string", "pattern": "^F[0-9]+$"}}
+              }
+            }
+          }
+        }
+      }
+    },
+    "attack_surface": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "risk", "gap", "evidence_ids", "minimum_repair"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^G[0-9]+$"},
+          "risk": {"enum": ["Critical", "High", "Medium", "Low"]},
+          "gap": {"type": "string", "minLength": 1},
+          "evidence_ids": {"type": "array", "items": {"type": "string", "pattern": "^F[0-9]+$"}},
+          "minimum_repair": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "relevance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["main", "backup", "omit"],
+      "properties": {
+        "main": {"type": "array", "items": {"type": "string"}},
+        "backup": {"type": "array", "items": {"type": "string"}},
+        "omit": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "advisor_profile_ref": {"type": ["string", "null"]}
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["locator", "verification"],
+      "properties": {
+        "locator": {"type": "string", "minLength": 1},
+        "verification": {"enum": ["text_exact", "manual", "unverified"]},
+        "quote": {"type": "string", "minLength": 1},
+        "verification_note": {"type": "string", "minLength": 1}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"verification": {"const": "text_exact"}}, "required": ["verification"]},
+          "then": {"required": ["quote"]}
+        },
+        {
+          "if": {"properties": {"verification": {"enum": ["manual", "unverified"]}}, "required": ["verification"]},
+          "then": {"required": ["verification_note"]}
+        }
+      ]
+    },
+    "measurement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["metric", "value", "unit", "condition", "qualifier"],
+      "properties": {
+        "metric": {"type": "string", "minLength": 1},
+        "value": {"type": "string", "pattern": "^[+-]?[0-9][0-9,]*(?:\\.[0-9]+)?$"},
+        "unit": {"type": "string", "minLength": 1},
+        "condition": {"type": "string", "minLength": 1},
+        "qualifier": {"enum": ["exact", "approximate"]}
+      }
+    }
+  }
+}

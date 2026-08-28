@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "case_id": "L01",
+  "title": "Learn baseline sensitivity, then test it on a held-out meeting",
+  "synthetic": true,
+  "weeks": [
+    {
+      "meeting_id": "M01",
+      "role": "profile-training",
+      "input": "Ablation update with no baseline on the main path.",
+      "recorded_advisor_behavior": "Advisor asked to see the strongest baseline before discussing the ablation.",
+      "expected_profile_signal": "single_observation; low confidence"
+    },
+    {
+      "meeting_id": "M02",
+      "role": "profile-training",
+      "input": "New result with the baseline available only in backup.",
+      "recorded_advisor_behavior": "Advisor again asked whether the comparison used the strongest baseline.",
+      "expected_profile_signal": "second observation; confidence remains below high"
+    },
+    {
+      "meeting_id": "M03",
+      "role": "profile-training",
+      "input": "Replication update with several comparator choices.",
+      "recorded_advisor_behavior": "Advisor explicitly said to put the strongest baseline on the main path in future meetings.",
+      "expected_profile_signal": "explicit_feedback; high confidence is now permitted"
+    },
+    {
+      "meeting_id": "M04",
+      "role": "profile-holdout",
+      "input": "A new result includes a strongest baseline, two weaker comparators, and implementation detail.",
+      "recorded_advisor_behavior": null,
+      "expected_behavior": [
+        "Place the strongest baseline on the main path.",
+        "Cite M01, M02, and M03 as profile evidence.",
+        "Do not use the held-out meeting as evidence before generating its package.",
+        "Keep weaker comparators or implementation detail in backup unless decision-relevant."
+      ]
+    }
+  ],
+  "prohibited_behavior": [
+    "Infer preferences from demographics.",
+    "Claim holdout success before recorded M04 feedback exists.",
+    "Alter project facts to fit the learned preference."
+  ]
+}

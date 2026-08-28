@@ -1,0 +1,24 @@
+{
+  "run_id": "development-smoke-2026-08-28-01",
+  "date": "2026-08-28",
+  "source": "../../examples/compression-confound/raw-notes.md",
+  "prompts": "../baseline-prompts.md",
+  "runner": "current Codex editing session",
+  "exact_model_id": null,
+  "model_settings": null,
+  "independent_evaluator": false,
+  "contamination_warning": "The same session that implemented the skill generated all three outputs. These files are a reproducibility and format smoke run, not unbiased benchmark evidence.",
+  "source_revision_note": "In v0.3.2-alpha, the synthetic 32-frame sentence was lexically clarified to state that 70 is an accuracy value so typed metric grounding can be tested. The frozen outputs were not regenerated; no value, condition, uncertainty, or conclusion changed.",
+  "variants": {
+    "B0": "B0-output.md",
+    "B1": "B1-output.md",
+    "candidate": "candidate-output.md"
+  },
+  "sha256": {
+    "source": "c650b89ecee2b66bc6eb2b1536bfe4f6b4dd9824fab33e4b020344fb5a7707ea",
+    "prompts": "a7be64459e5e2f5b8c1d73d43decd0ea81ea232af20066b01ef368533b082671",
+    "B0": "4b31d9c64d3b8ccf461ea1fcef1f82ceec893b3f009a56476a875c34403a933a",
+    "B1": "533b1f30176199ce265c6aae11f7cb5ec9f882360feb094a777fb22216fe36de",
+    "candidate": "24309d75b36bf7163aa1aade301f05b3ce7981ff6625d0e50c82b55d35371844"
+  }
+}

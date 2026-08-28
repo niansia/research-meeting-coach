@@ -1,0 +1,20 @@
+{
+  "id": "E07",
+  "title": "Decision request without supplied alternatives",
+  "category": "decision",
+  "request": "Make this into a crisp A-versus-B decision for my advisor.",
+  "source_material": [
+    "The current pipeline exceeds the available GPU memory.",
+    "No alternative implementations have been evaluated or proposed."
+  ],
+  "must_include": [
+    "Ask for prioritization criteria or label generated options as proposals.",
+    "Keep tested and proposed choices distinct."
+  ],
+  "must_not_include": [
+    "Present invented A and B as supplied options.",
+    "Claim either option was tested.",
+    "Invent memory measurements."
+  ],
+  "expected_route": "use-skill"
+}

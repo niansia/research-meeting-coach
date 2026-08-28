@@ -1,0 +1,4 @@
+run_id,condition,accuracy_value,accuracy_qualifier,frame_count,token_budget,replication_status
+R1,baseline,72.3,exact,unknown,unknown,single supplied run
+R2,compression setup,65.1,exact,unknown,unknown,single supplied run
+R3,32-frame follow-up,70,approximate,32,unknown,single supplied run

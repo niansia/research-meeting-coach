@@ -1,0 +1,55 @@
+{
+  "taxonomy_version": "1.0",
+  "freeze_rule": "Freeze this taxonomy version and ranked predictions before the meeting; additions after seeing actual questions require a new version and cannot score the earlier meeting.",
+  "themes": [
+    {
+      "theme_id": "missing-comparable-baseline",
+      "definition": "The claim lacks a baseline matched closely enough for the stated comparison.",
+      "include": "Questions about which baseline is comparable or whether baseline settings are matched.",
+      "exclude": "General requests for more experiments without a baseline-comparability concern.",
+      "example": "Which directly comparable baseline are you using?"
+    },
+    {
+      "theme_id": "uncontrolled-frame-count",
+      "definition": "Frame count differs across compared conditions and remains a live confound.",
+      "include": "Questions about holding frame count constant or separating a frame-count effect.",
+      "exclude": "Questions about token budget alone when frame count is already matched.",
+      "example": "Did you hold frame count constant?"
+    },
+    {
+      "theme_id": "unclear-evaluation-metric",
+      "definition": "The metric, direction, aggregation, or interpretation needed to judge the result is unclear.",
+      "include": "Questions asking what the metric measures or how it was aggregated.",
+      "exclude": "Questions about replication count when the metric itself is clear.",
+      "example": "Is this macro or micro accuracy?"
+    },
+    {
+      "theme_id": "insufficient-replication",
+      "definition": "The result lacks repeated runs, seeds, or uncertainty evidence needed for its claim strength.",
+      "include": "Questions about seeds, repetitions, variance, or confidence intervals.",
+      "exclude": "Questions about a missing comparison condition rather than repeatability.",
+      "example": "How many independent seeds produced this result?"
+    },
+    {
+      "theme_id": "alternative-causal-explanation",
+      "definition": "A specific alternative mechanism could explain the observation attributed to the proposed cause.",
+      "include": "Questions naming or requesting a discriminating test for an alternative explanation.",
+      "exclude": "Generic skepticism without an identifiable alternative mechanism.",
+      "example": "Could the gain come from the longer context rather than compression?"
+    },
+    {
+      "theme_id": "unverified-literature-note",
+      "definition": "A literature statement lacks verified citation details or is being used beyond its evidential role.",
+      "include": "Questions asking for the source or challenging literature as proof of the project result.",
+      "exclude": "Questions about project measurements that do not rely on literature.",
+      "example": "Which paper supports that mechanism?"
+    },
+    {
+      "theme_id": "incomplete-prior-action",
+      "definition": "A previously requested action remains partial, blocked, unknown, or absent from the update.",
+      "include": "Questions about the status or disposition of a recorded prior action.",
+      "exclude": "New action suggestions with no continuity link.",
+      "example": "What happened to the control we agreed on last week?"
+    }
+  ]
+}

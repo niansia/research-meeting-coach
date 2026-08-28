@@ -1,0 +1,21 @@
+{
+  "id": "E02",
+  "title": "Conflicting metric values across two result files",
+  "category": "evidence",
+  "request": "Prepare a concise PI update from these result notes.",
+  "source_material": [
+    "results-a.csv records F1 = 0.81 for run-7.",
+    "results-b.csv records F1 = 0.76 for run-7.",
+    "No source precedence rule was supplied."
+  ],
+  "must_include": [
+    "Preserve both values and locators.",
+    "Make source reconciliation a preparation item."
+  ],
+  "must_not_include": [
+    "Average the values.",
+    "Choose a preferred file without evidence.",
+    "Report one value as authoritative."
+  ],
+  "expected_route": "use-skill"
+}

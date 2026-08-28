@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:research-meeting-coach:schema:public-question-seed-corpus:1.0",
+  "title": "De-identified Public Research-Meeting Question Seed Corpus",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "corpus_version",
+    "collected_on",
+    "purpose",
+    "claim_boundary",
+    "evidence_tiers",
+    "records"
+  ],
+  "properties": {
+    "corpus_version": {"type": "string", "minLength": 1},
+    "collected_on": {"type": "string", "format": "date"},
+    "purpose": {"type": "string", "minLength": 1},
+    "claim_boundary": {"type": "string", "minLength": 1},
+    "evidence_tiers": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["B", "C", "D"],
+      "properties": {
+        "B": {"type": "string", "minLength": 1},
+        "C": {"type": "string", "minLength": 1},
+        "D": {"type": "string", "minLength": 1}
+      }
+    },
+    "records": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "source_id",
+          "source_fingerprint",
+          "platform",
+          "access_method",
+          "evidence_tier",
+          "author_stage",
+          "discipline",
+          "meeting_type",
+          "observation_type",
+          "paraphrase",
+          "mapped_theme_ids",
+          "candidate_theme_ids",
+          "paired_pre_meeting_material",
+          "privacy"
+        ],
+        "properties": {
+          "id": {"type": "string", "pattern": "^PQ[0-9]{3}$"},
+          "source_id": {"type": "string", "pattern": "^SRC[0-9]{3}$"},
+          "source_fingerprint": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"},
+          "platform": {"enum": ["dcard", "reddit", "academia-stackexchange", "other"]},
+          "access_method": {"enum": ["public-search-index", "public-page-manual"]},
+          "evidence_tier": {"enum": ["B", "C", "D"]},
+          "author_stage": {"enum": ["undergraduate", "masters", "doctoral", "postdoctoral", "faculty", "unknown"]},
+          "discipline": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["broad_group", "label", "basis"],
+            "properties": {
+              "broad_group": {"enum": ["computing-engineering", "life-health", "social-humanities", "mathematics", "unknown"]},
+              "label": {"type": "string", "minLength": 1},
+              "basis": {"enum": ["self-reported", "post-context", "unknown"]}
+            }
+          },
+          "meeting_type": {"enum": ["advisor-meeting", "lab-meeting", "project-meeting", "supervision-meeting", "unknown"]},
+          "observation_type": {"enum": ["actual-question", "reported-feedback", "reported-pattern", "community-guidance"]},
+          "paraphrase": {"type": "string", "minLength": 20},
+          "mapped_theme_ids": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"}
+          },
+          "candidate_theme_ids": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"}
+          },
+          "paired_pre_meeting_material": {"const": false},
+          "privacy": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["username_stored", "direct_quote_stored", "sensitive_detail_excluded"],
+            "properties": {
+              "username_stored": {"const": false},
+              "direct_quote_stored": {"const": false},
+              "sensitive_detail_excluded": {"const": true}
+            }
+          }
+        }
+      }
+    }
+  }
+}
