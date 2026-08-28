@@ -35,9 +35,13 @@ def fail(errors: list[str], message: str) -> None:
 
 def main() -> int:
     errors: list[str] = []
-    for package_file in (
+    readme_paths = (
         ROOT.parent / "README.md",
         ROOT.parent / "README.zh-TW.md",
+        ROOT.parent / "README.zh-CN.md",
+    )
+    for package_file in (
+        *readme_paths,
         ROOT.parent / "LICENSE",
         ROOT.parent / "CONTRIBUTING.md",
         ROOT.parent / "SECURITY.md",
@@ -51,8 +55,12 @@ def main() -> int:
         if not package_file.is_file() or package_file.stat().st_size == 0:
             fail(errors, f"required publishable package file is missing or empty: {package_file}")
     version = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
-    if version != "0.3.3-alpha" or f'version: "{version}"' not in (ROOT / "SKILL.md").read_text(encoding="utf-8") or f"{version}" not in (ROOT.parent / "README.md").read_text(encoding="utf-8"):
-        fail(errors, "VERSION, SKILL.md metadata, and README status are inconsistent")
+    if (
+        version != "0.3.4-alpha"
+        or f'version: "{version}"' not in (ROOT / "SKILL.md").read_text(encoding="utf-8")
+        or any(version not in path.read_text(encoding="utf-8") for path in readme_paths)
+    ):
+        fail(errors, "VERSION, SKILL.md metadata, and trilingual README status are inconsistent")
 
     demo_dir = ROOT / "examples" / "60-second-demo"
     for demo_file in ("README.md", "raw-notes.md", "previous-meeting.md", "result.csv", "generic-output.md", "advisor-aware-output.md"):
@@ -489,7 +497,7 @@ def main() -> int:
             "exact source locators, quotes, and project-fact spans verified",
             "typed metric, condition, and exact/approximate qualifier metadata grounded to text-exact source quotes",
             "grounded brief accepted",
-            "portable bilingual README, policy files, LICENSE, visual assets, example, and frozen development outputs present",
+            "portable trilingual README, policy files, LICENSE, visual assets, example, and frozen development outputs present",
             "self-contained 60-second onboarding demo present",
             "package version metadata is consistent",
             "development source, prompts, and outputs match recorded SHA-256 hashes",

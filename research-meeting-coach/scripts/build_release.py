@@ -14,7 +14,7 @@ from pathlib import Path, PurePosixPath
 
 PACKAGE_ROOT = Path(__file__).resolve().parent.parent
 REPOSITORY_ROOT = PACKAGE_ROOT.parent
-ROOT_FILES = {"README.md", "README.zh-TW.md", "AUDIT_REPORT.md", "LICENSE", "CONTRIBUTING.md", "SECURITY.md", "CODE_OF_CONDUCT.md", "requirements-dev.txt"}
+ROOT_FILES = {"README.md", "README.zh-TW.md", "README.zh-CN.md", "AUDIT_REPORT.md", "LICENSE", "CONTRIBUTING.md", "SECURITY.md", "CODE_OF_CONDUCT.md", "requirements-dev.txt"}
 PACKAGE_ROOT_FILES = {"SKILL.md", "VERSION", "requirements.txt"}
 PACKAGE_DIRECTORIES = {"agents", "assets", "evals", "examples", "references", "schemas", "scripts"}
 DENIED_PARTS = {"__pycache__", ".git", "dist"}

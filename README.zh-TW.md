@@ -2,10 +2,10 @@
 
 **把混亂的研究進度，整理成教授能做決定的 meeting。**
 
-[English README](README.md)
+[English](README.md) | [简体中文](README.zh-CN.md)
 
 ![狀態：early alpha](https://img.shields.io/badge/status-early%20alpha-f59e0b)
-![版本：0.3.3-alpha](https://img.shields.io/badge/version-0.3.3--alpha-2563eb)
+![版本：0.3.4-alpha](https://img.shields.io/badge/version-0.3.4--alpha-2563eb)
 ![授權：MIT](https://img.shields.io/badge/license-MIT-16a34a)
 [![CI](https://github.com/niansia/research-meeting-coach/actions/workflows/ci.yml/badge.svg)](https://github.com/niansia/research-meeting-coach/actions/workflows/ci.yml)
 
