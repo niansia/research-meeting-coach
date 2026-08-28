@@ -7,6 +7,7 @@
 ![狀態：early alpha](https://img.shields.io/badge/status-early%20alpha-f59e0b)
 ![版本：0.3.3-alpha](https://img.shields.io/badge/version-0.3.3--alpha-2563eb)
 ![授權：MIT](https://img.shields.io/badge/license-MIT-16a34a)
+[![CI](https://github.com/niansia/research-meeting-coach/actions/workflows/ci.yml/badge.svg)](https://github.com/niansia/research-meeting-coach/actions/workflows/ci.yml)
 
 你做了一週研究，但 meeting 前真正困難的通常不是「做投影片」，而是：
 
@@ -55,13 +56,13 @@ Separate observations from interpretations, rank the reasoning gaps,
 and end with one decision my advisor can answer.
 ```
 
-GitHub repository 公開後，預定的一行安裝指令是：
+一行安裝：
 
 ```text
 npx skills add niansia/research-meeting-coach --skill research-meeting-coach
 ```
 
-在公開 remote 建立並從乾淨環境實測成功前，這條指令仍屬 provisional，不應對外宣稱已可用。
+這條指令已於 2026-08-28 從全新的臨時 Git 專案連到公開 repository 實測成功。
 
 完整可重現入口：[60-second demo](research-meeting-coach/examples/60-second-demo/README.md)。
 

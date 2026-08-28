@@ -7,6 +7,7 @@
 ![Status: early alpha](https://img.shields.io/badge/status-early%20alpha-f59e0b)
 ![Version: 0.3.3-alpha](https://img.shields.io/badge/version-0.3.3--alpha-2563eb)
 ![License: MIT](https://img.shields.io/badge/license-MIT-16a34a)
+[![CI](https://github.com/niansia/research-meeting-coach/actions/workflows/ci.yml/badge.svg)](https://github.com/niansia/research-meeting-coach/actions/workflows/ci.yml)
 
 You did a week of research. This Agent Skill helps you decide what is actually worth showing, which claim is not supported yet, what your advisor asked for last time, and the one decision they can help make today.
 
@@ -46,13 +47,13 @@ This repository follows the [Agent Skills specification](https://agentskills.io/
 
 Open or clone this repository, give your Agent Skills-compatible client access to `research-meeting-coach/`, and invoke `$research-meeting-coach`. Clients without automatic discovery can read `research-meeting-coach/SKILL.md` directly with its supporting files.
 
-### One-line install after the GitHub repository is published
+### One-line install
 
 ```text
 npx skills add niansia/research-meeting-coach --skill research-meeting-coach
 ```
 
-The `skills` CLI supports GitHub owner/repository sources and multiple agents. **The command above is provisional until the public repository exists and the command is tested from a clean environment.** Do not advertise it as working before that release check passes.
+The `skills` CLI supports GitHub owner/repository sources and multiple agents. The command above was verified against the public repository from a clean temporary Git project on 2026-08-28.
 
 ## Try this prompt
 
@@ -158,7 +159,7 @@ python validate_repository.py --json
 
 That second script checks `.github/workflows/ci.yml`, issue forms, the pull-request template, and the release checklist. It and `.github/` are intentionally absent from the portable Skill ZIP; CI runs both layers.
 
-GitHub Actions runs the deterministic checks and audited release build on Python 3.11 and 3.13 across Linux and Windows. Add the real workflow badge only after the repository is published and the default-branch workflow passes.
+GitHub Actions runs the deterministic checks and audited release build on Python 3.11 and 3.13 across Linux and Windows. The badge at the top reports the current default-branch workflow state.
 
 <details>
 <summary>Deterministic limits</summary>
