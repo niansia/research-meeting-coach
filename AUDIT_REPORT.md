@@ -1,12 +1,12 @@
 # Collision, Provenance, and Red/Blue Audit
 
-Date: 2026-08-28 (Asia/Taipei)
+Date: 2026-08-31 (Asia/Taipei)
 
 ## Revised verdict
 
 No exact public skill named or positioned as `research-meeting-coach` was found in the reviewed sources. That is not a uniqueness claim: public skill registries are large and fast-moving. A 2026 healthcare-skill study alone filtered 557 healthcare skills from 58,159 public ClawHub skills, so a small repository scan cannot establish global novelty ([paper](https://arxiv.org/abs/2605.02709)).
 
-There is substantial mechanism-level convergence with [lab-meeting-report-skill](https://github.com/LikC1606/lab-meeting-report-skill), not merely topic adjacency. A broad “weekly research material to decision-ready meeting” positioning would look derivative and route ambiguously. Version `0.3.4-alpha` therefore positions this package above existing reports: it consumes a lab-meeting report, weekly summary, draft, or raw notes and adds advisor-facing critique, personalization, rehearsal, and auditable state.
+There is substantial mechanism-level convergence with [lab-meeting-report-skill](https://github.com/LikC1606/lab-meeting-report-skill), not merely topic adjacency. A broad “weekly research material to decision-ready meeting” positioning would look derivative and route ambiguously. Version `0.3.5-alpha` therefore positions this package above existing reports: it consumes a lab-meeting report, weekly summary, draft, or raw notes and adds advisor-facing critique, personalization, rehearsal, and auditable state.
 
 [Advisor Roaster](https://marketplace.agentscli.com/items/nianbaizy-grad-agent-kit-advisor-roaster) is a direct adjacent competitor for strict-advisor question rehearsal and defense preparation. The remaining boundary is not “anticipates advisor questions”; it is behavior-grounded personalization with evidence/confidence controls, auditable project provenance, and held-out question-theme evaluation without exact-question or personality-prediction claims.
 
@@ -149,7 +149,8 @@ The public `lab-meeting-report-skill` page was rechecked on 2026-08-28 and ident
 
 - Red: a technically rigorous README still made a new visitor read architecture and audit detail before learning how to try the skill. There was no CI workflow, self-contained first-run folder, contribution path, pilot issue form, or tested repository install command.
 - Blue: the first screen now leads with the student problem, a visual before/after, a short output contrast, an invocation prompt, and a transparent generic-prompt comparison. A six-file synthetic 60-second demo, pinned cross-platform GitHub Actions matrix, structured issue forms, contribution/security/conduct documents, UI icon, and release checklist were added.
-- Honest boundary: the proposed `npx skills add niansia/research-meeting-coach --skill research-meeting-coach` command remains labeled provisional until a public remote exists and the command succeeds from a clean environment. No CI badge or installation-count badge is shown before those external states exist.
+- Blue: the public `npx skills add niansia/research-meeting-coach --skill research-meeting-coach` path is exercised from a clean temporary Git project with a pinned `skills` CLI. The matrix now repeats the install and extracted-release checks on Windows, Ubuntu Linux, and macOS with Python 3.11 and 3.13.
+- Honest boundary: this establishes tested portability on the CI matrix, not universal compatibility with every Linux distribution, CPU architecture, shell, Agent Skills client, or future CLI release. No installation-count claim is made.
 
 ### Round 18 - Package default-deny and content-secret bypasses
 
@@ -181,7 +182,7 @@ The public `lab-meeting-report-skill` page was rechecked on 2026-08-28 and ident
 - Frozen B0, B1, and candidate development outputs with contamination metadata.
 - Human-rating schema and deterministic `compare_outputs.py` aggregator.
 - Fifteen de-identified public retrospective seed records across Dcard, Reddit, and Academia Stack Exchange, with a collection protocol, discipline-stratified discovery memo, and an optional local provenance check.
-- Product-first GitHub README, self-contained 60-second demo, pinned Linux/Windows CI matrix, privacy-aware issue templates, and contributor/security guidance.
+- Product-first GitHub README, self-contained 60-second demo, pinned Linux/Windows/macOS CI matrix, privacy-aware issue templates, and contributor/security guidance.
 - Default-deny public package roots with post-URL and common credential-pattern scanning, plus an explicit human-review boundary.
 - Separate portable/repository validation, text-exact typed-metadata grounding, and blind-only headline comparison metrics.
 - Published-schema-first runtime validation for arbitrary RMS and advisor-profile artifacts, with explicit dependency failure.

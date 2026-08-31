@@ -5,7 +5,7 @@
 [English](README.md) | [简体中文](README.zh-CN.md)
 
 ![狀態：early alpha](https://img.shields.io/badge/status-early%20alpha-f59e0b)
-![版本：0.3.4-alpha](https://img.shields.io/badge/version-0.3.4--alpha-2563eb)
+![版本：0.3.5-alpha](https://img.shields.io/badge/version-0.3.5--alpha-2563eb)
 ![授權：MIT](https://img.shields.io/badge/license-MIT-16a34a)
 [![CI](https://github.com/niansia/research-meeting-coach/actions/workflows/ci.yml/badge.svg)](https://github.com/niansia/research-meeting-coach/actions/workflows/ci.yml)
 
@@ -62,7 +62,30 @@ and end with one decision my advisor can answer.
 npx skills add niansia/research-meeting-coach --skill research-meeting-coach
 ```
 
-這條指令已於 2026-08-28 從全新的臨時 Git 專案連到公開 repository 實測成功。
+請在要安裝 Skill 的專案中執行。三大主流系統使用同一條安裝指令；目前 CI 固定用 `skills@1.5.23` 做乾淨安裝測試，需要 Git 與 Node.js 22.20 以上。
+
+<details>
+<summary>Windows／macOS／Linux 指令</summary>
+
+**Windows（PowerShell）**
+
+```powershell
+npx skills add niansia/research-meeting-coach --skill research-meeting-coach
+```
+
+**macOS（Terminal）**
+
+```bash
+npx skills add niansia/research-meeting-coach --skill research-meeting-coach
+```
+
+**Linux（Terminal）**
+
+```bash
+npx skills add niansia/research-meeting-coach --skill research-meeting-coach
+```
+
+</details>
 
 完整可重現入口：[60-second demo](research-meeting-coach/examples/60-second-demo/README.md)。
 
@@ -96,6 +119,60 @@ Strong generic prompt 本來就有用，本專案也明確承認它已能抓到�
 正式 model-generated behavioral runs：0。Cross-model runs：0。具有知情同意、會前材料、凍結預測與會後問題紀錄的 paired cases：0。
 
 因此目前可宣稱的是「auditable advisor-facing critique layer」，不能宣稱「比 generic prompt 好」或「可以預測教授」。下一個真正重要的里程碑是五個 permissioned、prospective paired meetings。
+
+## 本機驗證
+
+以下指令須在 clone 下來的 repository 根目錄執行，支援 Python 3.11 或 3.13。
+
+<details open>
+<summary>Windows（PowerShell）</summary>
+
+```powershell
+py -3.11 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
+.\.venv\Scripts\python.exe research-meeting-coach\scripts\run_static_evals.py
+.\.venv\Scripts\python.exe validate_repository.py --json
+.\.venv\Scripts\python.exe research-meeting-coach\scripts\validate_schema_contracts.py
+.\.venv\Scripts\python.exe research-meeting-coach\scripts\build_release.py --json
+.\.venv\Scripts\python.exe research-meeting-coach\scripts\validate_portable_release.py --json
+.\.venv\Scripts\python.exe validate_skill_install.py --json
+```
+
+</details>
+
+<details>
+<summary>macOS（Terminal）</summary>
+
+```bash
+python3 -m venv .venv
+./.venv/bin/python -m pip install -r requirements-dev.txt
+./.venv/bin/python research-meeting-coach/scripts/run_static_evals.py
+./.venv/bin/python validate_repository.py --json
+./.venv/bin/python research-meeting-coach/scripts/validate_schema_contracts.py
+./.venv/bin/python research-meeting-coach/scripts/build_release.py --json
+./.venv/bin/python research-meeting-coach/scripts/validate_portable_release.py --json
+./.venv/bin/python validate_skill_install.py --json
+```
+
+</details>
+
+<details>
+<summary>Linux（Terminal）</summary>
+
+```bash
+python3 -m venv .venv
+./.venv/bin/python -m pip install -r requirements-dev.txt
+./.venv/bin/python research-meeting-coach/scripts/run_static_evals.py
+./.venv/bin/python validate_repository.py --json
+./.venv/bin/python research-meeting-coach/scripts/validate_schema_contracts.py
+./.venv/bin/python research-meeting-coach/scripts/build_release.py --json
+./.venv/bin/python research-meeting-coach/scripts/validate_portable_release.py --json
+./.venv/bin/python validate_skill_install.py --json
+```
+
+</details>
+
+GitHub Actions 會跑六組 job：Windows、Ubuntu Linux、macOS，各自搭配 Python 3.11 與 3.13；每組都會重建並解開驗證 portable ZIP，再做一次專案內安裝測試。
 
 ## 安全發布
 

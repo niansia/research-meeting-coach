@@ -5,7 +5,7 @@
 [繁體中文](README.zh-TW.md) | [简体中文](README.zh-CN.md)
 
 ![Status: early alpha](https://img.shields.io/badge/status-early%20alpha-f59e0b)
-![Version: 0.3.4-alpha](https://img.shields.io/badge/version-0.3.4--alpha-2563eb)
+![Version: 0.3.5-alpha](https://img.shields.io/badge/version-0.3.5--alpha-2563eb)
 ![License: MIT](https://img.shields.io/badge/license-MIT-16a34a)
 [![CI](https://github.com/niansia/research-meeting-coach/actions/workflows/ci.yml/badge.svg)](https://github.com/niansia/research-meeting-coach/actions/workflows/ci.yml)
 
@@ -49,11 +49,36 @@ Open or clone this repository, give your Agent Skills-compatible client access t
 
 ### One-line install
 
+Run this in the project where you want the skill installed. The command is identical on Windows, macOS, and Linux:
+
 ```text
 npx skills add niansia/research-meeting-coach --skill research-meeting-coach
 ```
 
-The `skills` CLI supports GitHub owner/repository sources and multiple agents. The command above was verified against the public repository from a clean temporary Git project on 2026-08-28.
+The current installation smoke test pins `skills@1.5.23`, which requires Git and Node.js 22.20 or newer. The repository CI repeats a clean project-local install on all three operating systems.
+
+<details>
+<summary>Commands by operating system</summary>
+
+**Windows (PowerShell)**
+
+```powershell
+npx skills add niansia/research-meeting-coach --skill research-meeting-coach
+```
+
+**macOS (Terminal)**
+
+```bash
+npx skills add niansia/research-meeting-coach --skill research-meeting-coach
+```
+
+**Linux (Terminal)**
+
+```bash
+npx skills add niansia/research-meeting-coach --skill research-meeting-coach
+```
+
+</details>
 
 ## Try this prompt
 
@@ -137,7 +162,57 @@ The [public question seed](research-meeting-coach/evals/public-question-seed/see
 
 ## Validate locally
 
-From the repository root:
+These commands are for a cloned repository. Use Python 3.11 or 3.13; the commands avoid shell activation so they are reproducible in CI and local terminals.
+
+<details open>
+<summary>Windows (PowerShell)</summary>
+
+```powershell
+py -3.11 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
+.\.venv\Scripts\python.exe research-meeting-coach\scripts\run_static_evals.py
+.\.venv\Scripts\python.exe validate_repository.py --json
+.\.venv\Scripts\python.exe research-meeting-coach\scripts\validate_schema_contracts.py
+.\.venv\Scripts\python.exe research-meeting-coach\scripts\build_release.py --json
+.\.venv\Scripts\python.exe research-meeting-coach\scripts\validate_portable_release.py --json
+.\.venv\Scripts\python.exe validate_skill_install.py --json
+```
+
+</details>
+
+<details>
+<summary>macOS (Terminal)</summary>
+
+```bash
+python3 -m venv .venv
+./.venv/bin/python -m pip install -r requirements-dev.txt
+./.venv/bin/python research-meeting-coach/scripts/run_static_evals.py
+./.venv/bin/python validate_repository.py --json
+./.venv/bin/python research-meeting-coach/scripts/validate_schema_contracts.py
+./.venv/bin/python research-meeting-coach/scripts/build_release.py --json
+./.venv/bin/python research-meeting-coach/scripts/validate_portable_release.py --json
+./.venv/bin/python validate_skill_install.py --json
+```
+
+</details>
+
+<details>
+<summary>Linux (Terminal)</summary>
+
+```bash
+python3 -m venv .venv
+./.venv/bin/python -m pip install -r requirements-dev.txt
+./.venv/bin/python research-meeting-coach/scripts/run_static_evals.py
+./.venv/bin/python validate_repository.py --json
+./.venv/bin/python research-meeting-coach/scripts/validate_schema_contracts.py
+./.venv/bin/python research-meeting-coach/scripts/build_release.py --json
+./.venv/bin/python research-meeting-coach/scripts/validate_portable_release.py --json
+./.venv/bin/python validate_skill_install.py --json
+```
+
+</details>
+
+Artifact-specific validators can also be run individually from the repository root:
 
 ```text
 python -m pip install -r research-meeting-coach/requirements.txt
@@ -159,7 +234,7 @@ python validate_repository.py --json
 
 That second script checks `.github/workflows/ci.yml`, issue forms, the pull-request template, and the release checklist. It and `.github/` are intentionally absent from the portable Skill ZIP; CI runs both layers.
 
-GitHub Actions runs the deterministic checks and audited release build on Python 3.11 and 3.13 across Linux and Windows. The badge at the top reports the current default-branch workflow state.
+GitHub Actions runs six jobs: Python 3.11 and 3.13 on Windows, Ubuntu Linux, and macOS. Every job runs the deterministic checks, builds and revalidates the extracted portable ZIP, and smoke-tests a project-local Agent Skill installation. The badge at the top reports the current default-branch workflow state.
 
 <details>
 <summary>Deterministic limits</summary>

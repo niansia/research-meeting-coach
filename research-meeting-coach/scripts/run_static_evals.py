@@ -56,7 +56,7 @@ def main() -> int:
             fail(errors, f"required publishable package file is missing or empty: {package_file}")
     version = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
     if (
-        version != "0.3.4-alpha"
+        version != "0.3.5-alpha"
         or f'version: "{version}"' not in (ROOT / "SKILL.md").read_text(encoding="utf-8")
         or any(version not in path.read_text(encoding="utf-8") for path in readme_paths)
     ):

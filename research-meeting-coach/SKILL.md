@@ -3,7 +3,7 @@ name: research-meeting-coach
 description: "Add an advisor-facing critique and coaching layer to an existing lab-meeting report, weekly summary, raw notes, or draft. Use when a graduate researcher wants reasoning-gap attack surface, evidence-backed advisor asks, behavior-grounded personalization, rehearsal, or post-meeting continuity. Do not use for generic reporting, paper-only slides, or visual deck production."
 license: MIT
 metadata:
-  version: "0.3.4-alpha"
+  version: "0.3.5-alpha"
 ---
 
 # Research Meeting Coach

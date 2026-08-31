@@ -18,6 +18,7 @@ REQUIRED_FILES = (
     ".github/ISSUE_TEMPLATE/config.yml",
     ".github/PULL_REQUEST_TEMPLATE.md",
     ".github/RELEASE_CHECKLIST.md",
+    "validate_skill_install.py",
 )
 REQUIRED_CI_COMMANDS = (
     "python -m pip install --disable-pip-version-check -r requirements-dev.txt",
@@ -26,6 +27,8 @@ REQUIRED_CI_COMMANDS = (
     "python research-meeting-coach/scripts/validate_schema_contracts.py",
     "python research-meeting-coach/scripts/validate_public_question_seed.py",
     "python research-meeting-coach/scripts/build_release.py --json",
+    "python research-meeting-coach/scripts/validate_portable_release.py --json",
+    "python validate_skill_install.py --json",
 )
 
 
@@ -48,6 +51,15 @@ def validate(root: Path = ROOT) -> list[str]:
             errors.append("CI workflow must install runtime dependencies before static validation")
         if "permissions:\n  contents: read" not in content:
             errors.append("CI workflow must keep contents permission read-only")
+        for operating_system in ("ubuntu-latest", "windows-latest", "macos-latest"):
+            if operating_system not in content:
+                errors.append(f"CI matrix does not include required platform: {operating_system}")
+        if "node-version: \"22.20.0\"" not in content:
+            errors.append("CI must pin a Node.js version compatible with the skills CLI")
+        build_command = "python research-meeting-coach/scripts/build_release.py --json"
+        portable_command = "python research-meeting-coach/scripts/validate_portable_release.py --json"
+        if build_command in content and portable_command in content and content.index(build_command) > content.index(portable_command):
+            errors.append("CI must build the release archive before validating its extracted contents")
     return errors
 
 
